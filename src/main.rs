@@ -19,9 +19,9 @@ fn pick_response() -> String {
     let num = rand::thread_rng().gen_range(1,6);
 
     let response = match num {
-        1 => "Hola Mundo",
-        2 => "¿Viste el programa añoche?",
-        3 => "Buen clima.",
+        1 => "Hola JSON",
+        2 => "Estoy usando el crate Iron.",
+        3 => "Estoy usando también rustc_serialize.",
         4 => "á é í ó ú ñ",
         5 => "Más letras especiales ü ö ç $ &",
         _ => ""
