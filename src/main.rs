@@ -62,7 +62,7 @@ fn main() {
         let respuesta = LaEstructura { mensaje: elegir_frase(), numero: 100, punto_flotante: 7.1, booleano: true };
         // Codificamos la respuesta a JSON ...
         let salida_json = json::encode(&respuesta).unwrap();
-        // Usamos nuestras variables para llenar a Response y le enviamos a la dirección definidad en My_URL.
+        // Usamos nuestras variables para llenar a Response y le enviamos a la dirección definida en My_URL.
         Ok(Response::with((tipo_de_contenido, status::Ok, salida_json)))
     }).http(MY_URL).unwrap();
 }
