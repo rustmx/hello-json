@@ -18,3 +18,7 @@ Entra al directorio hello_json:
 Para bajar dependencias, compilar y ejecutar, usa _cargo_:
 
     cargo run
+
+Si no hay un error, podrás ver el servicio en tu navegador web en la dirección http://localhost:3009/
+
+![Firefox consultando el servicio JSON](img/IMG_5452.JPG)
