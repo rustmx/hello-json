@@ -17,12 +17,17 @@ Declaración de un constante con el servidor y puerto de nuestro servicio.
 const MY_URL: &'static str = "localhost:3009";
 
 /*
+Definimos una struct llamada LaEstructura con diversos tipos de datos.
 LaEstructura debe poder ser codificable o "encodable".
 Es por ello que le precedemos con un atributo derive RustcEncodable.
+El dato "mensaje" será aleatorio.
 */
 #[derive(RustcDecodable, RustcEncodable)]
 struct LaEstructura{
-    mensaje: String
+    mensaje: String,
+    numero: i32,
+    punto_flotante: f32,
+    booleano: bool
 }
 
 /*
@@ -49,11 +54,15 @@ fn main() {
     // Mostramos un mensaje para que el usuario sepa la URL y el puerto del servidor
     println!("Listening on http://{}", MY_URL);
 
-
+    // Levantamos a Iron para que responda a solicitudes:
     Iron::new(|_: &mut Request| {
+        // Establecemos el tipo de contenido que vamos a devolver a JSON con charset=utf-8
         let tipo_de_contenido = "application/json;charset=utf-8".parse::<Mime>().unwrap();
-        let respuesta = LaEstructura { mensaje: elegir_frase() };
+        // Poblamos de valores LaEstructura y la pasamos a la variable respuesta
+        let respuesta = LaEstructura { mensaje: elegir_frase(), numero: 100, punto_flotante: 7.1, booleano: true };
+        // Codificamos la respuesta a JSON ...
         let salida_json = json::encode(&respuesta).unwrap();
+        // Armamos una respuesta y la enviamos a la dirección definidad en My_URL.
         Ok(Response::with((tipo_de_contenido, status::Ok, salida_json)))
     }).http(MY_URL).unwrap();
 }
