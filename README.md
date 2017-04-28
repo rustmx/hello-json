@@ -7,9 +7,13 @@ Esta versión ha sido modificada y comentada para fines de aprendizaje. Varios c
 
 Lee directamente el código fuente en el archivo [main.rs](src/main.rs).
 
-Puedes clonar este ejemplo con:
+Puedes clonar este ejemplo en una terminal con:
 
     git clone git@github.com:aio00/hello-json.git
+
+Entra al directorio hello_json:
+
+    cd hello_json
 
 Para bajar dependencias, compilar y ejecutar:
 
