@@ -18,19 +18,18 @@ const MY_URL: &'static str = "localhost:3009";
 
 /*
 LaEstructura debe poder ser codificable o "encodable".
-Es por ello que le precedemos con un derive RustcEncodable.
+Es por ello que le precedemos con un atributo derive RustcEncodable.
 */
 #[derive(RustcDecodable, RustcEncodable)]
 struct LaEstructura{
     mensaje: String
 }
 
-
 /*
-La función pick_response() crea un respuesta aleatoria de tipo String.
+La función elegir_frase() devuelve una frase aleatoria.
 */
 fn elegir_frase() -> String {
-    // Creación de un número aleatorio.
+    // Creación de un número aleatorio con rand.
     let num = rand::thread_rng().gen_range(1,6);
 
     // Elección de una frase a partir del número aleatorio.
@@ -47,7 +46,10 @@ fn elegir_frase() -> String {
 }
 
 fn main() {
+    // Mostramos un mensaje para que el usuario sepa la URL y el puerto del servidor
     println!("Listening on http://{}", MY_URL);
+
+
     Iron::new(|_: &mut Request| {
         let tipo_de_contenido = "application/json;charset=utf-8".parse::<Mime>().unwrap();
         let respuesta = LaEstructura { mensaje: elegir_frase() };
