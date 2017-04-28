@@ -18,23 +18,23 @@ const MY_URL: &'static str = "localhost:3009";
 
 /*
 La siguiente estructura, JsonResponse, debe poder ser codificable o "encodable".
-Es por ello que le antecedemos un derive con RustcEncodable.
+Es por ello que le precedemos con un derive con RustcEncodable.
 */
 #[derive(RustcDecodable, RustcEncodable)]
 struct JsonResponse{
-    response: String
+    mensaje: String
 }
 
 
 /*
 La función pick_response() crea un respuesta aleatoria de tipo String.
 */
-fn pick_response() -> String {
+fn elegir_mensaje() -> String {
     // Creación de un número aleatorio.
     let num = rand::thread_rng().gen_range(1,6);
 
-    // Elección de un respuesta a partir del número aleatorio.
-    let response = match num {
+    // Elección de una frase a partir del número aleatorio.
+    let frase_elegida = match num {
         1 => "Hola JSON",
         2 => "Estoy usando el crate Iron.",
         3 => "Estoy usando también rustc_serialize.",
@@ -43,15 +43,15 @@ fn pick_response() -> String {
         _ => ""
     };
 
-    response.to_string()
+    frase_elegida.to_string()
 }
 
 fn main() {
     println!("Listening on http://{}", MY_URL);
     Iron::new(|_: &mut Request| {
-        let content_type = "application/json;charset=utf-8".parse::<Mime>().unwrap();
-        let response = JsonResponse { response: pick_response() };
-        let out = json::encode(&response).unwrap();
-        Ok(Response::with((content_type, status::Ok, out)))
+        let tipo_de_contenido = "application/json;charset=utf-8".parse::<Mime>().unwrap();
+        let respuesta = JsonResponse { mensaje: elegir_mensaje() };
+        let salida = json::encode(&respuesta).unwrap();
+        Ok(Response::with((tipo_de_contenido, status::Ok, salida)))
     }).http(MY_URL).unwrap();
 }
