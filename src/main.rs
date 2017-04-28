@@ -18,7 +18,7 @@ const MY_URL: &'static str = "localhost:3009";
 
 /*
 La siguiente estructura, JsonResponse, debe poder ser codificable o "encodable".
-Es por ello que le precedemos con un derive con RustcEncodable.
+Es por ello que le precedemos con un derive RustcEncodable.
 */
 #[derive(RustcDecodable, RustcEncodable)]
 struct JsonResponse{
