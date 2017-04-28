@@ -11,6 +11,6 @@ Puedes clonar este ejemplo con:
 
     git clone git@github.com:aio00/hello-json.git
 
-Para ejecutar:
+Para bajar dependencias, compilar y ejecutar:
 
     cargo run
