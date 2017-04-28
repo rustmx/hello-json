@@ -15,6 +15,6 @@ Entra al directorio hello_json:
 
     cd hello_json
 
-Para bajar dependencias, compilar y ejecutar:
+Para bajar dependencias, compilar y ejecutar, usa _cargo_:
 
     cargo run
