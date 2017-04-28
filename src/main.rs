@@ -29,7 +29,7 @@ struct LaEstructura{
 /*
 La función pick_response() crea un respuesta aleatoria de tipo String.
 */
-fn elegir_mensaje() -> String {
+fn elegir_frase() -> String {
     // Creación de un número aleatorio.
     let num = rand::thread_rng().gen_range(1,6);
 
@@ -50,7 +50,7 @@ fn main() {
     println!("Listening on http://{}", MY_URL);
     Iron::new(|_: &mut Request| {
         let tipo_de_contenido = "application/json;charset=utf-8".parse::<Mime>().unwrap();
-        let respuesta = LaEstructura { mensaje: elegir_mensaje() };
+        let respuesta = LaEstructura { mensaje: elegir_frase() };
         let salida_json = json::encode(&respuesta).unwrap();
         Ok(Response::with((tipo_de_contenido, status::Ok, salida_json)))
     }).http(MY_URL).unwrap();
