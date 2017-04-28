@@ -4,6 +4,6 @@ version = "0.1.0"
 authors = ["Mario Martinez <m@nube.io>"]
 
 [dependencies]
-iron = "0.4.*"
+iron = "0.5.*"
 rand = "*"
 rustc-serialize = "*"
