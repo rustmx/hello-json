@@ -17,11 +17,11 @@ Declaración de un constante con el servidor y puerto de nuestro servicio.
 const MY_URL: &'static str = "localhost:3009";
 
 /*
-La siguiente estructura, JsonResponse, debe poder ser codificable o "encodable".
+LaEstructura debe poder ser codificable o "encodable".
 Es por ello que le precedemos con un derive RustcEncodable.
 */
 #[derive(RustcDecodable, RustcEncodable)]
-struct JsonResponse{
+struct LaEstructura{
     mensaje: String
 }
 
@@ -50,8 +50,8 @@ fn main() {
     println!("Listening on http://{}", MY_URL);
     Iron::new(|_: &mut Request| {
         let tipo_de_contenido = "application/json;charset=utf-8".parse::<Mime>().unwrap();
-        let respuesta = JsonResponse { mensaje: elegir_mensaje() };
-        let salida = json::encode(&respuesta).unwrap();
-        Ok(Response::with((tipo_de_contenido, status::Ok, salida)))
+        let respuesta = LaEstructura { mensaje: elegir_mensaje() };
+        let salida_json = json::encode(&respuesta).unwrap();
+        Ok(Response::with((tipo_de_contenido, status::Ok, salida_json)))
     }).http(MY_URL).unwrap();
 }
