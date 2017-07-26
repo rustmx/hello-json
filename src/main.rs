@@ -59,7 +59,12 @@ fn main() {
         // Establecemos el tipo de contenido que vamos a devolver a JSON con charset=utf-8
         let tipo_de_contenido = "application/json;charset=utf-8".parse::<Mime>().unwrap();
         // Poblamos de valores LaEstructura y la pasamos a la variable respuesta
-        let respuesta = LaEstructura { mensaje: elegir_frase(), numero: 100, punto_flotante: 7.1, booleano: true };
+        let respuesta = LaEstructura {
+            mensaje: elegir_frase(),
+            numero: rand::thread_rng().gen_range(1,100),
+            punto_flotante: rand::thread_rng().gen_range(1.0,100.00),
+            booleano: true
+        };
         // Codificamos la respuesta a JSON ...
         let salida_json = json::encode(&respuesta).unwrap();
         // Usamos nuestras variables para llenar a Response y le enviamos a la dirección definida en My_URL.
