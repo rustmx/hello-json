@@ -9,11 +9,11 @@ Lee directamente el código fuente comentado en el archivo [main.rs](src/main.rs
 
 Puedes clonar este ejemplo en una terminal con:
 
-    git clone git@github.com:aio00/hello-json.git
+    git clone https://github.com/rustmx/hello-json.git
 
 Entra al directorio hello_json:
 
-    cd hello_json
+    cd hello-json
 
 Para bajar dependencias, compilar y ejecutar, usa _cargo_:
 
